@@ -1,24 +1,23 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Table(name = "clients")
+import java.util.Set;
+
 @Entity
+@Table(name = "clients")
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "name", length = 200)
     private String name;
 
-    @OneToOne(mappedBy = "clients")
-    private Ticket ticket;
+    @OneToMany(mappedBy = "clientId")
+    private Set<Ticket> tickets;
 
     public Client(){}
 
@@ -43,11 +42,13 @@ public class Client {
         this.name = name;
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
+
 }

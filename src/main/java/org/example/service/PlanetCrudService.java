@@ -4,7 +4,7 @@ import org.example.dao.PlanetDao;
 import org.example.entity.Planet;
 
 public class PlanetCrudService implements Service<Planet>{
-    private PlanetDao planetDao = new PlanetDao();
+    private final PlanetDao planetDao = new PlanetDao();
 
     @Override
     public void save(Planet entity) {

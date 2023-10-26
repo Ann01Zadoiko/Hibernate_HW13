@@ -16,5 +16,5 @@ create table tickets(
 	to_planet_id varchar(50),
 	foreign key (client_id) references clients(id),
 	foreign key (from_planet_id) references planets(id),
-	foreign key (to_planet_id) references planets(id),
+	foreign key (to_planet_id) references planets(id)
 );

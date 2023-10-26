@@ -4,7 +4,7 @@ import org.example.dao.ClientDao;
 import org.example.entity.Client;
 
 public class ClientCrudService implements Service<Client>{
-    private ClientDao clientDao = new ClientDao();
+    private final ClientDao clientDao = new ClientDao();
 
     @Override
     public void save(Client entity) {

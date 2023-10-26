@@ -7,13 +7,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class ClientDao implements Dao<Client>{
-    private SessionFactory sessionFactory = HibernateUtil.getInstance().getSessionFactory();
+    private final SessionFactory sessionFactory = HibernateUtil.getInstance().getSessionFactory();
 
     @Override
     public void save(Client entity) {
         try (Session session = sessionFactory.openSession()){
             Transaction transaction = session.beginTransaction();
-            session.save(entity);
+            session.persist(entity);
             transaction.commit();
         }
     }
@@ -29,16 +29,18 @@ public class ClientDao implements Dao<Client>{
     public void update(Client entity) {
         try (Session session = sessionFactory.openSession()){
             Transaction transaction = session.beginTransaction();
-            session.update(entity);
+            session.merge(entity);
             transaction.commit();
         }
     }
+
+
 
     @Override
     public void delete(Client entity) {
         try (Session session = sessionFactory.openSession()){
             Transaction transaction = session.beginTransaction();
-            session.delete(entity);
+            session.remove(entity);
             transaction.commit();
         }
     }

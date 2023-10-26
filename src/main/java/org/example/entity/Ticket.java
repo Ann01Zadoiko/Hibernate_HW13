@@ -1,24 +1,23 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.sql.Timestamp;
 
-@Table(name = "tickets")
 @Entity
+@Table(name = "tickets")
 public class Ticket {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp createdAt;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id", nullable = false)
     private Client clientId;
 
     @ManyToOne(fetch = FetchType.LAZY)

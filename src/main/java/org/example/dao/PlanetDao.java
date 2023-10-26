@@ -7,13 +7,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class PlanetDao implements Dao<Planet>{
-    private SessionFactory sessionFactory = HibernateUtil.getInstance().getSessionFactory();
+    private final SessionFactory sessionFactory = HibernateUtil.getInstance().getSessionFactory();
 
     @Override
     public void save(Planet entity) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.save(entity);
+            session.persist(entity);
             transaction.commit();
         }
     }
@@ -27,7 +27,7 @@ public class PlanetDao implements Dao<Planet>{
     public void update(Planet entity) {
         try (Session session = sessionFactory.openSession()){
             Transaction transaction = session.beginTransaction();
-            session.update(entity);
+            session.merge(entity);
             transaction.commit();
         }
     }
@@ -36,7 +36,7 @@ public class PlanetDao implements Dao<Planet>{
     public void delete(Planet entity) {
         try (Session session = sessionFactory.openSession()){
             Transaction transaction = session.beginTransaction();
-            session.delete(entity);
+            session.remove(entity);
             transaction.commit();
         }
     }
