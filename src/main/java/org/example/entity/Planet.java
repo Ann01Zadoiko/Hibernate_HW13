@@ -2,7 +2,6 @@ package org.example.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
 
 @Entity
 @Table(name = "planets")
@@ -11,17 +10,12 @@ public class Planet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private String id;
 
     @Column(name = "name", length = 500)
     private String name;
 
-    @OneToMany (mappedBy = "fromPlanetId")
-    private Set<Ticket> fromPlanetId;
-
-    @OneToMany (mappedBy = "toPlanetId")
-    private Set<Ticket> toPlanetId;
 
     public Planet(){}
 

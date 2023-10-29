@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Migration {
     private static final Logger logger = Logger.getLogger(Migration.class);
-    private static Properties properties = new Properties();
+    private static final Properties properties = new Properties();
 
     private Migration(){}
 
