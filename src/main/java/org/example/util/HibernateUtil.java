@@ -18,7 +18,6 @@ public class HibernateUtil implements AutoCloseable{
         sessionFactory = new Configuration()
                 .addAnnotatedClass(Client.class)
                 .addAnnotatedClass(Planet.class)
-    //            .addAnnotatedClass(Ticket.class)
                 .buildSessionFactory();
     }
 

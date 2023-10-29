@@ -9,7 +9,6 @@ import jakarta.persistence.*;
 public class Planet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String id;
 
